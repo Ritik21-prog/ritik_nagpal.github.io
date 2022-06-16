@@ -1,0 +1,373 @@
+$button-dimensions: 60px;
+$title-offset: 10px;
+$title-width: 190px;
+$title-font-size: 18px;
+$buttons-offset: 20px;
+
+$basic-dark-color: #212121;
+$basic-light-color: #fff;
+$accent-font-color: #CC5803;
+$unactive-btn-bg: #8b8b8b;
+$fb-color: #3b5998;
+$tw-color: #00aced;
+$g-plus: #dd4b39;
+$dribbble: #ea4c89;
+$pinterest: #cb2027;
+$insta: #bc2a8d;
+$in: #007bb6;
+$vimeo: #1ab7ea;
+$social-icon-font-size: 25px;
+
+//transitions mixin
+@mixin transition-mix($property: all, $duration: 0.2s, $timing: linear, $delay: 0s) {
+  transition-property: $property;
+  transition-duration: $duration;
+  transition-timing-function: $timing;
+  transition-delay: $delay;
+}
+
+//position absolute mixin
+@mixin position-absolute ($top: null, $left: null, $right: null, $bottom: null) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  right: $right;
+  bottom: $bottom;
+}
+
+/*common styles !!!YOU DON'T NEED THEM */
+body {
+  font: {
+      family: 'Roboto', sans-serif;
+      weight: 400;
+      size: 17px;
+    }
+}
+
+.container {
+  width: 100%;
+  margin: 60px auto 0px auto;
+  text-align: center;
+  
+  h1 {
+    font: {
+      family: 'Roboto', sans-serif;
+      weight: 900;
+      size: 30px;
+    }
+    text-transform: uppercase;
+    color: $basic-dark-color;
+    letter-spacing: 3px;
+    
+    span {
+      display: inline-block;
+      
+      &:before,
+      &:after {
+        content: "";
+        display: block;
+        width: 34px;
+        height: 2px;
+        background-color: $basic-dark-color;
+        margin: 0px 0px 0px 2px;
+      }
+    }
+  }
+  
+  .link {
+    display: flex;
+    justify-content: space-around;
+    width: 800px;
+    margin: 30px auto 0;
+    
+    a {
+      @include transition-mix;
+      
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      color: #1f1f1f;
+      font: {
+        size: 20px;
+      }
+      text-decoration: none;
+      
+      &:hover {
+        color: $accent-font-color;
+      }
+
+      i {
+        color: $accent-font-color;
+        margin-right: 5px;
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+.effects {
+  margin-top: 50px;
+}
+
+.effect {
+  width: 100%;
+  padding: 50px 0px 70px 0px;
+  background-color: $basic-dark-color;
+  
+  h2 {
+    color: $basic-light-color;
+    font: {
+      family: 'Playfair Display', serif;
+      weight: 400;
+      size: 25px;
+    }
+    letter-spacing: 3px;
+  }
+  
+  &:nth-child(2n) {
+    background-color: $basic-light-color;
+    
+    h2 {
+      color: $basic-dark-color;
+    }
+  }
+  
+   .buttons {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/*common link styles !!!YOU NEED THEM*/
+.effect {
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    visibility: hidden;
+  }
+  
+  a {
+    text-decoration: none !important;
+    color: $basic-light-color;
+    width: $button-dimensions;
+    height:$button-dimensions;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: $buttons-offset;
+    font-size: $social-icon-font-size;
+    position: relative;
+    visibility: visible;
+    
+    i {
+      position: relative;
+      z-index: 3;
+    }
+    
+    &:after {
+      content: attr(title);
+      visibility: hidden;
+      
+      width: $title-width;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      
+      z-index: 400;
+      
+      font: {
+        size: $title-font-size;
+      }
+    }
+    
+    &:nth-child(-n+4) {
+      
+      &:after {
+        @include position-absolute($top: 0, $left: $button-dimensions + $title-offset);
+        text-align: left;
+        justify-content: flex-start;
+      }
+    }
+    
+    &:nth-child(n+5) {
+      
+      &:after {
+        @include position-absolute($top: 0, $right: $button-dimensions + $title-offset);
+        justify-content: flex-end;
+      }
+    }
+     
+    &.fb {
+      background-color: $fb-color;
+    }
+    
+    &.tw {
+      background-color: $tw-color;
+    }
+    
+    &.g-plus {
+      background-color: $g-plus;
+    }
+    
+    &.dribbble {
+      background-color: $dribbble;
+    }
+    
+    &.pinterest {
+      background-color: $pinterest;
+    }
+    
+    &.insta {
+      background-color: $insta;
+    }
+    
+    &.in {
+      background-color: $in;
+    }
+    
+    &.vimeo {
+      background-color: $vimeo;
+    }
+  }
+}
+
+/* aemilius effect */
+.effect.aemilius {
+  
+  a {
+    @include transition-mix;
+  }
+  
+  .buttons:hover {
+    
+    a:not(:hover) {
+      background-color: $unactive-btn-bg;
+      opacity: 0.2;
+    }
+    
+    a:hover {
+      opacity: 1;
+    }
+  }
+}
+
+/* mutius effect */
+.effect.mutius {
+  
+  a {
+    @include transition-mix($timing: linear);
+    transform-origin: center bottom;
+  }
+  
+  .buttons:hover {
+    
+    a:not(:hover) {
+      transform: scale(0.7);
+    }
+    
+    a:hover {
+      transform: scale(1) translateY(-10px);
+    }
+  }
+}
+
+/* orleans effect */
+.effect.orleans {
+  
+  a {
+    @include transition-mix;
+    
+    &:after {
+      opacity: 0;
+    }
+    
+    &:hover {
+      
+      &:after {
+        @include transition-mix;
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+  
+  .buttons:hover {
+    
+    a:not(:hover) {
+      opacity: 0.15;
+      
+      i {
+        visibility: hidden;
+        opacity: 0;
+      }
+    }
+    
+  }
+}
+
+/* cinna effect */
+.effect.cinna {
+  
+  a {
+    @include transition-mix;
+    
+    &:after {
+      @include position-absolute($top: 0, $left: $button-dimensions);
+      text-align: left;
+      justify-content: flex-start;
+      opacity: 0;
+    }
+    
+    &:hover {
+      
+      &:after {
+        @include transition-mix($delay: 0.2s);
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+  
+  .buttons:hover {
+    
+    a:not(:hover) {
+      transform: scale(0.7);
+    }
+    
+    a:hover {
+      padding-right: $title-width;
+      border-radius: 5px;
+    }
+  }
+}
+
+/* phebe effect */
+.effect.phebe {
+  
+  a {
+    @include transition-mix;
+  }
+  
+  .buttons:hover {
+    
+    a:not(:hover) {
+      transform: scale(0.6) rotate(360deg);
+      transform-origin: center center;
+    }
+    
+    a:hover {
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.2), 
+                   2px 2px 1px rgba(0,0,0,0.2),
+                  3px 3px 1px rgba(0,0,0,0.2),
+                  4px 4px 1px rgba(0,0,0,0.2),
+                  5px 5px 1px rgba(0,0,0,0.2),
+                  6px 6px 1px rgba(0,0,0,0.2),
+                  7px 7px 1px rgba(0,0,0,0.2),
+                  8px 8px 1px rgba(0,0,0,0.2);
+    }
+  }
+}

@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+}
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 10px;
+  background-color: purple;
+  -webkit-transition: all linear 0.1s;
+  transition: all linear 0.1s;
+  min-width: 1%;
+}
+/*# sourceMappingURL=scroll.css.map */

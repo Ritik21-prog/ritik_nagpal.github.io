@@ -1,0 +1,14 @@
+body { 
+    margin: 0; 
+}
+
+// Progress Bar
+.progress { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    height: 10px; 
+    background-color: purple; 
+    transition: all linear 0.1s; 
+    min-width: 1%; 
+}
